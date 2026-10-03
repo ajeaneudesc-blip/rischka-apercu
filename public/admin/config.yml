@@ -1,0 +1,53 @@
+backend:
+  name: github
+  repo: OWNER/REPO
+  branch: main
+
+local_backend: true
+
+media_folder: public/images/uploads
+public_folder: /images/uploads
+locale: fr
+
+collections:
+  - name: blog
+    label: Articles du blog
+    label_singular: Article
+    folder: content/blog
+    extension: md
+    create: true
+    slug: "{{slug}}"
+    sortable_fields: [date, title]
+    fields:
+      - { label: Titre, name: title, widget: string }
+      - { label: Date, name: date, widget: datetime, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+      - { label: Photo de couverture, name: cover, widget: image }
+      - { label: Résumé, name: summary, widget: text }
+      - { label: Texte, name: body, widget: markdown }
+  - name: events
+    label: Événements
+    label_singular: Événement
+    folder: content/events
+    extension: md
+    create: true
+    slug: "{{slug}}"
+    sortable_fields: [date, title]
+    fields:
+      - { label: Nom, name: title, widget: string }
+      - { label: Type, name: category, widget: select, options: [Organisé, Suivi] }
+      - { label: Date, name: date, widget: datetime, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+      - { label: Lieu, name: place, widget: string }
+      - { label: Mon rôle, name: role, widget: string }
+      - { label: Photo, name: image, widget: image }
+      - { label: Description, name: body, widget: markdown }
+  - name: testimonials
+    label: Témoignages
+    label_singular: Témoignage
+    folder: content/testimonials
+    extension: md
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Nom, name: author, widget: string }
+      - { label: Fonction et organisation, name: role, widget: string }
+      - { label: Témoignage, name: body, widget: text }
